@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    config:
+      name: eureka-client
+      uri: http://localhost:8889
+      profile: dev
+      label: master # 分支

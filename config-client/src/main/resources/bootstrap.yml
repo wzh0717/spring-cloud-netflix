@@ -1,0 +1,24 @@
+spring:
+  cloud:
+    config:
+      name: config-client
+      #uri: http://localhost:8889
+      profile: dev
+      label: master
+      discovery:
+        enabled: true
+        service-id: config-server
+
+#eureka
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
+    registry-fetch-interval-seconds: 30
+  instance:
+    appname: config-client
+    hostname: config-client
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:@project.version@
