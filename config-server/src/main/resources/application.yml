@@ -1,0 +1,37 @@
+server:
+  port: 8889
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/wzh0717/config.git # https://github.com/wzh0717/config 仓库地址
+          default-label: master
+          search-paths: eureka-client,config-client  # 指定搜索根路径下的所有目录，若有多个路径使用逗号隔开 respo,eureka-client
+      label: master # 分支
+          #username:
+          #password:
+
+#eureka
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
+    registry-fetch-interval-seconds: 30
+  instance:
+    appname: config-server
+    hostname: config-server
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}:@project.version@
+
+
+
+
+
+
+
